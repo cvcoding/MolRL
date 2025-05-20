@@ -130,16 +130,6 @@ python main.py --mode finetune \
                --load_ckpt checkpoints/pretrain/molrl_pretrain.pth
 ```
 
-#### Command for DTA Prediction (KIBA/Davis)
-```bash
-python main.py --mode finetune \
-               --data_dir data/kiba/ \
-               --task_type dta \
-               --loss_fn mse \
-               --protein_feature_type embeddings \  # Use precomputed protein embeddings
-               --load_ckpt checkpoints/pretrain/molrl_pretrain.pth
-```
-
 
 ## 4. Testing and Evaluation
 #### Objective
@@ -203,18 +193,6 @@ python main.py --mode finetune \
                --n_epochs_after 150
 ```
 
-### C. DTA Prediction on KIBA/Davis
-Follow the protocol in Section 4.5 of the paper:
-```bash
-python main.py --mode finetune \
-               --data_dir data/KIBA/ \
-               --task_type dta \
-               --loss_fn mse \
-               --protein_embeddings_dir data/protein_embeddings/ \
-               --load_ckpt checkpoints/pretrain_large/molrl_pretrain.pth
-```
-
-
 ## 7. Custom Dataset Guide
 ### Step 1: Data Preparation
 - **Images**: Generate 240x240 molecular images from SMILES using RDKit.
@@ -245,9 +223,6 @@ python main.py --config config.yaml \
 - **Self-Supervised Learning**: Use BYOL framework with dual views (anchor/learner) and data augmentation (masking, graph perturbation).
 
 
-## Contact
-For issues or contributions, open a GitHub issue or contact the corresponding author: **Limin Wang** (lmwang@nju.edu.cn).
-
-Code inspired by the paper: [Molecular Image Representation Learning through Structure Bootstrapping Self-Supervision](https://arxiv.org/abs/2505.XXXX).
+Code inspired by the paper: [Molecular Image Representation Learning through Structure Bootstrapping Self-Supervision with Hierarchical Attentive Graph Isomorphism Networks](https://arxiv.org/abs/2505.XXXX).
 
 Happy molecular learning! 🔬
