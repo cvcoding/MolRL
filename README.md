@@ -27,7 +27,6 @@ Place datasets in the following structure:
 data/
   ├── freesolv/
   │   ├── train_scoffold/  # Preprocessed scaffold-split data
-  │   └── val_scoffold/
   │   └── test_scoffold/
   └── custom_dataset/      # For custom data (see below)
 
