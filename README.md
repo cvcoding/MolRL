@@ -45,9 +45,15 @@ python train.py \
   --aug
 3. Parameters Overview
 Argument	Description	Default
+
 --lr	Learning rate	1e-4
+
 --bs	Batch size	32
+
 --patch	Patch size for graph nodes	15
+
 --tau	EMA decay rate for target network	0.99
+
 --aug	Enable image augmentations	False
+
 --mixup	Enable mixup augmentation	False
