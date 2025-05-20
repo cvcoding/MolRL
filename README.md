@@ -27,10 +27,11 @@ Place datasets in the following structure: \
 data/ \
   ├── freesolv/ \
   │   ├── train_scoffold/  # Preprocessed scaffold-split data \
+  │   └── val_scoffold/ \
   │   └── test_scoffold/ \
   └── custom_dataset/      # For custom data (see below) 
 
-2. Reproduce Paper Results
+3. Reproduce Paper Results
 Example: Train on Freesolv (Regression)
 python train.py \
   --net vit \
@@ -42,7 +43,7 @@ python train.py \
   --tau 0.99 \
   --cos \
   --aug
-3. Parameters Overview
+4. Parameters Overview
 Argument	Description	Default \
   --lr	Learning rate	1e-4 \
   --bs	Batch size	32 \
