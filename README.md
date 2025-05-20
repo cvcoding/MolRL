@@ -1,42 +1,53 @@
 # MolRL
 Molecular Image Representation Learning through Structure Bootstrapping Self-Supervision with Hierarchical Attentive Graph Isomorphism Networks
 
-Introduction
+Introduction: MolRL is a novel self-supervised pretraining deep learning framework designed specifically for learning molecular representations and predicting molecular properties. This framework addresses the challenge of acquiring labeled molecular data, which is often costly and time-consuming, by leveraging a large corpus of unlabeled molecular images. By exploiting the power of contrastive learning and hierarchical graph analysis, MolRL enables effective generalization across the vast chemical space.
 
-MolRL is a novel self-supervised pretraining deep learning framework designed specifically for learning molecular representations and predicting molecular properties. This framework addresses the challenge of acquiring labeled molecular data, which is often costly and time-consuming, by leveraging a large corpus of unlabeled molecular images. By exploiting the power of contrastive learning and hierarchical graph analysis, MolRL enables effective generalization across the vast chemical space.
+PyTorch 1.12.1 Environment with Deep Learning Dependencies
 
-Key Features
+# This file may be used to create an environment using:
+# $ conda create --name <env> --file <this file>
+deepchem=2.8.0=pyhd8ed1ab_0
+imagecodecs=2023.1.23=py38h6c6a46e_0
+imageio=2.31.4=py38haa95532_0
+pandas=2.0.3=py38h4ed8f06_0
+pillow=10.0.1=py38h045eedc_0
+python=3.8.18=h1aa4202_0
+pytorch=1.12.1=py3.8_cuda11.3_cudnn8_0
+pytorch-mutex=1.0=cuda
+scikit-image=0.19.3=py38hd77b12b_1
+scikit-learn=1.3.0=py38h4ed8f06_1
+tensorboard=2.17.0=pyhd8ed1ab_0
+torch-scatter=2.1.2=pypi_0
+torchvision=0.13.1=py38_cu113
 
-Self-Supervised Pretraining: 
+1. Data Preparation
+For MoleculeNet/Freesolv (Preprocessed)
+Place datasets in the following structure:
+data/
+  ├── freesolv/
+  │   ├── train_scoffold/  # Preprocessed scaffold-split data
+  │   └── val_scoffold/
+  │   └── test_scoffold/
+  └── custom_dataset/      # For custom data (see below)
 
-MolRL is pretrained on 10 million unlabeled molecular images, allowing it to learn rich molecular representations without relying heavily on labeled data.
-Structure Bootstrapping: 
-
-The framework dissects molecular images into patches and leverages graph structure bootstrapping with local Routing and global attention to capture intricate molecular structures.
-Contrastive Learning: A self-supervised contrastive learning approach co-trains anchor and learner views of augmented molecular graphs, enhancing the representation's discriminability.
-Hybrid Model: 
-
-Integrates CNNs for image feature extraction and graph neural networks for hierarchical graph analysis, achieving precise molecular feature representation.
-Generalizability: Demonstrates remarkable accuracy across diverse molecular property benchmarks, including both classification and regression tasks.
-Unsupervised Clustering: Even without direct access to labels during training, MolRL exhibits the ability to cluster molecules based on their underlying properties, highlighting its proficiency in extracting meaningful chemical structure information.
-Framework Overview
-
-The MolRL framework consists of the following main components:
-
-Data Preprocessing: 
-
-Molecular images are first preprocessed and dissected into patches, each representing a part of the molecule's structure.
-Graph Construction: 
-
-These patches are then used to construct molecular graphs, leveraging the inherent graph structure of chemical compounds.
-Self-Supervised Contrastive Learning: Anchor and learner views of augmented molecular graphs are co-trained using a contrastive loss function, forcing the model to learn discriminative representations.
-Hierarchical Graph Analysis: 
-
-Graph neural networks are employed to analyze the hierarchical structure of the molecular graphs, capturing both local and global interactions.
-Prediction and Evaluation: 
-
-The pretrained model is fine-tuned for specific molecular property prediction tasks, and evaluated on diverse benchmarks.
-
-Experimental Results
-
-Extensive experiments demonstrate that MolRL achieves state-of-the-art performance across various molecular property benchmarks, outperforming supervised learning baselines and highlighting the effectiveness of its self-supervised pretraining approach. Furthermore, the model's ability to cluster molecules based on their underlying properties, without direct access to labels, underscores its proficiency in extracting meaningful chemical information from data.
+2. Reproduce Paper Results
+Example: Train on Freesolv (Regression)
+python train.py \
+  --net vit \
+  --lr 1e-4 \
+  --bs 32 \
+  --patch 15 \
+  --data_address ../data/freesolv/train_scoffold \
+  --n_epochs 50 \
+  --tau 0.99 \
+  --cos \
+  --aug
+3. Parameters Overview
+Argument	Description	Default
+--lr	Learning rate	1e-4
+--bs	Batch size	32
+--patch	Patch size for graph nodes	15
+--tau	EMA decay rate for target network	0.99
+--aug	Enable image augmentations	False
+--mixup	Enable mixup augmentation	False
