@@ -223,6 +223,16 @@ python main.py --config config.yaml \
 - **Self-Supervised Learning**: Use BYOL framework with dual views (anchor/learner) and data augmentation (masking, graph perturbation).
 
 
-Code inspired by the paper: [Molecular Image Representation Learning through Structure Bootstrapping Self-Supervision with Hierarchical Attentive Graph Isomorphism Networks](https://arxiv.org/abs/2505.XXXX).
+Code inspired by the paper: 
+Shan D, Luo Y, Yuan H, et al. MolRL: Self-Supervised Molecular Image Representation Learning via Graph Structure Bootstrapping[J]. Pattern Recognition, 2025: 112773.
+
+@article{shan2025molrl,
+  title={MolRL: Self-Supervised Molecular Image Representation Learning via Graph Structure Bootstrapping},
+  author={Shan, Dongjing and Luo, Yamei and Yuan, Hong and Mao, Jiashun and Wang, Limin},
+  journal={Pattern Recognition},
+  pages={112773},
+  year={2025},
+  publisher={Elsevier}
+}
 
 Happy molecular learning! 🔬
